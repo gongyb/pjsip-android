@@ -29,6 +29,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -357,6 +358,14 @@ public class MainActivity extends Activity
 	    etPass. setText("");
 	}
 
+        Log.i("etId", "etId="+accCfg.getIdUri());
+        if (accCfg.getIdUri().equals("sip:localhost")){
+            etId.setText("sip:6101@192.168.1.118");
+            etReg.setText("sip:192.168.1.118");
+            etUser.setText("6101");
+            etPass.setText("6101");
+        }
+
 	adb.setCancelable(false);
 	adb.setPositiveButton("OK",
 	    new DialogInterface.OnClickListener()
@@ -455,6 +464,7 @@ public class MainActivity extends Activity
 
 	if (is_add) {
 	    adb.setTitle("Add Buddy");
+        etUri.setText("sip:6002@192.168.1.118");
 	} else {
 	    adb.setTitle("Edit Buddy");
 	    etUri. setText(initial.getUri());
@@ -521,6 +531,16 @@ public class MainActivity extends Activity
 
 	BuddyConfig old_cfg = account.buddyList.get(buddyListSelectedIdx).cfg;
 	dlgAddEditBuddy(old_cfg);
+    }
+
+    private void sendBuddyInstantMessage(){
+        SendInstantMessageParam msg = new SendInstantMessageParam();
+        msg.setContent("xxxxxxxxxxxxxxxxxxxxx");
+        try {
+            account.buddyList.get(0).sendInstantMessage(msg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void delBuddy(View view) {
