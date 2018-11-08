@@ -143,6 +143,10 @@ public class Call {
     pjsua2JNI.Call_dialDtmf(swigCPtr, this, digits);
   }
 
+  public void sendDtmf(CallSendDtmfParam param) throws java.lang.Exception {
+    pjsua2JNI.Call_sendDtmf(swigCPtr, this, CallSendDtmfParam.getCPtr(param), param);
+  }
+
   public void sendInstantMessage(SendInstantMessageParam prm) throws java.lang.Exception {
     pjsua2JNI.Call_sendInstantMessage(swigCPtr, this, SendInstantMessageParam.getCPtr(prm), prm);
   }
@@ -237,6 +241,10 @@ public class Call {
 
   public void onCallRxOffer(OnCallRxOfferParam prm) {
     if (getClass() == Call.class) pjsua2JNI.Call_onCallRxOffer(swigCPtr, this, OnCallRxOfferParam.getCPtr(prm), prm); else pjsua2JNI.Call_onCallRxOfferSwigExplicitCall(swigCPtr, this, OnCallRxOfferParam.getCPtr(prm), prm);
+  }
+
+  public void onCallRxReinvite(OnCallRxReinviteParam prm) {
+    if (getClass() == Call.class) pjsua2JNI.Call_onCallRxReinvite(swigCPtr, this, OnCallRxReinviteParam.getCPtr(prm), prm); else pjsua2JNI.Call_onCallRxReinviteSwigExplicitCall(swigCPtr, this, OnCallRxReinviteParam.getCPtr(prm), prm);
   }
 
   public void onCallTxOffer(OnCallTxOfferParam prm) {

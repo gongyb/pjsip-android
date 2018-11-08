@@ -266,6 +266,7 @@ public class pjsua2JNI {
   public final static native int PJSIP_DIALOG_CAP_UNSUPPORTED_get();
   public final static native int PJSIP_DIALOG_CAP_SUPPORTED_get();
   public final static native int PJSIP_DIALOG_CAP_UNKNOWN_get();
+  public final static native int PJSIP_SC_NULL_get();
   public final static native int PJSIP_SC_TRYING_get();
   public final static native int PJSIP_SC_RINGING_get();
   public final static native int PJSIP_SC_CALL_BEING_FORWARDED_get();
@@ -352,6 +353,7 @@ public class pjsua2JNI {
   public final static native int PJSUA_CALL_NO_SDP_OFFER_get();
   public final static native int PJSUA_CALL_REINIT_MEDIA_get();
   public final static native int PJSUA_CALL_UPDATE_VIA_get();
+  public final static native int PJSUA_CALL_UPDATE_TARGET_get();
   public final static native int PJSUA_MED_TP_CLOSE_MEMBER_get();
   public final static native int PJSUA_SND_DEFAULT_CAPTURE_DEV_get();
   public final static native int PJSUA_SND_DEFAULT_PLAYBACK_DEV_get();
@@ -418,9 +420,9 @@ public class pjsua2JNI {
   public final static native int TimeVal_msec_get(long jarg1, TimeVal jarg1_);
   public final static native long new_TimeVal();
   public final static native void delete_TimeVal(long jarg1);
+  public final static native void delete_PersistentObject(long jarg1);
   public final static native void PersistentObject_readObject(long jarg1, PersistentObject jarg1_, long jarg2, ContainerNode jarg2_) throws java.lang.Exception;
   public final static native void PersistentObject_writeObject(long jarg1, PersistentObject jarg1_, long jarg2, ContainerNode jarg2_) throws java.lang.Exception;
-  public final static native void delete_PersistentObject(long jarg1);
   public final static native void delete_PersistentDocument(long jarg1);
   public final static native void PersistentDocument_loadFile(long jarg1, PersistentDocument jarg1_, String jarg2) throws java.lang.Exception;
   public final static native void PersistentDocument_loadString(long jarg1, PersistentDocument jarg1_, String jarg2) throws java.lang.Exception;
@@ -508,6 +510,12 @@ public class pjsua2JNI {
   public final static native String TlsConfig_privKeyFile_get(long jarg1, TlsConfig jarg1_);
   public final static native void TlsConfig_password_set(long jarg1, TlsConfig jarg1_, String jarg2);
   public final static native String TlsConfig_password_get(long jarg1, TlsConfig jarg1_);
+  public final static native void TlsConfig_CaBuf_set(long jarg1, TlsConfig jarg1_, String jarg2);
+  public final static native String TlsConfig_CaBuf_get(long jarg1, TlsConfig jarg1_);
+  public final static native void TlsConfig_certBuf_set(long jarg1, TlsConfig jarg1_, String jarg2);
+  public final static native String TlsConfig_certBuf_get(long jarg1, TlsConfig jarg1_);
+  public final static native void TlsConfig_privKeyBuf_set(long jarg1, TlsConfig jarg1_, String jarg2);
+  public final static native String TlsConfig_privKeyBuf_get(long jarg1, TlsConfig jarg1_);
   public final static native void TlsConfig_method_set(long jarg1, TlsConfig jarg1_, int jarg2);
   public final static native int TlsConfig_method_get(long jarg1, TlsConfig jarg1_);
   public final static native void TlsConfig_proto_set(long jarg1, TlsConfig jarg1_, long jarg2);
@@ -749,6 +757,17 @@ public class pjsua2JNI {
   public final static native long AuthCredInfoVector_get(long jarg1, AuthCredInfoVector jarg1_, int jarg2);
   public final static native void AuthCredInfoVector_set(long jarg1, AuthCredInfoVector jarg1_, int jarg2, long jarg3, AuthCredInfo jarg3_);
   public final static native void delete_AuthCredInfoVector(long jarg1);
+  public final static native long new_SrtpCryptoVector__SWIG_0();
+  public final static native long new_SrtpCryptoVector__SWIG_1(long jarg1);
+  public final static native long SrtpCryptoVector_size(long jarg1, SrtpCryptoVector jarg1_);
+  public final static native long SrtpCryptoVector_capacity(long jarg1, SrtpCryptoVector jarg1_);
+  public final static native void SrtpCryptoVector_reserve(long jarg1, SrtpCryptoVector jarg1_, long jarg2);
+  public final static native boolean SrtpCryptoVector_isEmpty(long jarg1, SrtpCryptoVector jarg1_);
+  public final static native void SrtpCryptoVector_clear(long jarg1, SrtpCryptoVector jarg1_);
+  public final static native void SrtpCryptoVector_add(long jarg1, SrtpCryptoVector jarg1_, long jarg2, SrtpCrypto jarg2_);
+  public final static native long SrtpCryptoVector_get(long jarg1, SrtpCryptoVector jarg1_, int jarg2);
+  public final static native void SrtpCryptoVector_set(long jarg1, SrtpCryptoVector jarg1_, int jarg2, long jarg3, SrtpCrypto jarg3_);
+  public final static native void delete_SrtpCryptoVector(long jarg1);
   public final static native long new_SipMultipartPartVector__SWIG_0();
   public final static native long new_SipMultipartPartVector__SWIG_1(long jarg1);
   public final static native long SipMultipartPartVector_size(long jarg1, SipMultipartPartVector jarg1_);
@@ -920,10 +939,15 @@ public class pjsua2JNI {
   public final static native void delete_ConfPortInfo(long jarg1);
   public final static native void delete_Media(long jarg1);
   public final static native int Media_getType(long jarg1, Media jarg1_);
+  public final static native void AudioMediaTransmitParam_level_set(long jarg1, AudioMediaTransmitParam jarg1_, float jarg2);
+  public final static native float AudioMediaTransmitParam_level_get(long jarg1, AudioMediaTransmitParam jarg1_);
+  public final static native long new_AudioMediaTransmitParam();
+  public final static native void delete_AudioMediaTransmitParam(long jarg1);
   public final static native long AudioMedia_getPortInfo(long jarg1, AudioMedia jarg1_) throws java.lang.Exception;
   public final static native int AudioMedia_getPortId(long jarg1, AudioMedia jarg1_);
   public final static native long AudioMedia_getPortInfoFromId(int jarg1) throws java.lang.Exception;
   public final static native void AudioMedia_startTransmit(long jarg1, AudioMedia jarg1_, long jarg2, AudioMedia jarg2_) throws java.lang.Exception;
+  public final static native void AudioMedia_startTransmit2(long jarg1, AudioMedia jarg1_, long jarg2, AudioMedia jarg2_, long jarg3, AudioMediaTransmitParam jarg3_) throws java.lang.Exception;
   public final static native void AudioMedia_stopTransmit(long jarg1, AudioMedia jarg1_, long jarg2, AudioMedia jarg2_) throws java.lang.Exception;
   public final static native void AudioMedia_adjustRxLevel(long jarg1, AudioMedia jarg1_, float jarg2) throws java.lang.Exception;
   public final static native void AudioMedia_adjustTxLevel(long jarg1, AudioMedia jarg1_, float jarg2) throws java.lang.Exception;
@@ -1057,6 +1081,11 @@ public class pjsua2JNI {
   public final static native void AudDevManager_setPlc__SWIG_0(long jarg1, AudDevManager jarg1_, boolean jarg2, boolean jarg3) throws java.lang.Exception;
   public final static native void AudDevManager_setPlc__SWIG_1(long jarg1, AudDevManager jarg1_, boolean jarg2) throws java.lang.Exception;
   public final static native boolean AudDevManager_getPlc(long jarg1, AudDevManager jarg1_) throws java.lang.Exception;
+  public final static native long new_ExtraAudioDevice(int jarg1, int jarg2);
+  public final static native void delete_ExtraAudioDevice(long jarg1);
+  public final static native void ExtraAudioDevice_open(long jarg1, ExtraAudioDevice jarg1_);
+  public final static native void ExtraAudioDevice_close(long jarg1, ExtraAudioDevice jarg1_);
+  public final static native boolean ExtraAudioDevice_isOpened(long jarg1, ExtraAudioDevice jarg1_);
   public final static native void MediaCoordinate_x_set(long jarg1, MediaCoordinate jarg1_, int jarg2);
   public final static native int MediaCoordinate_x_get(long jarg1, MediaCoordinate jarg1_);
   public final static native void MediaCoordinate_y_set(long jarg1, MediaCoordinate jarg1_, int jarg2);
@@ -1425,6 +1454,40 @@ public class pjsua2JNI {
   public final static native void AccountNatConfig_writeObject(long jarg1, AccountNatConfig jarg1_, long jarg2, ContainerNode jarg2_) throws java.lang.Exception;
   public final static native long new_AccountNatConfig();
   public final static native void delete_AccountNatConfig(long jarg1);
+  public final static native void SrtpCrypto_key_set(long jarg1, SrtpCrypto jarg1_, String jarg2);
+  public final static native String SrtpCrypto_key_get(long jarg1, SrtpCrypto jarg1_);
+  public final static native void SrtpCrypto_name_set(long jarg1, SrtpCrypto jarg1_, String jarg2);
+  public final static native String SrtpCrypto_name_get(long jarg1, SrtpCrypto jarg1_);
+  public final static native void SrtpCrypto_flags_set(long jarg1, SrtpCrypto jarg1_, long jarg2);
+  public final static native long SrtpCrypto_flags_get(long jarg1, SrtpCrypto jarg1_);
+  public final static native long new_SrtpCrypto();
+  public final static native void delete_SrtpCrypto(long jarg1);
+  public final static native void SrtpOpt_cryptos_set(long jarg1, SrtpOpt jarg1_, long jarg2, SrtpCryptoVector jarg2_);
+  public final static native long SrtpOpt_cryptos_get(long jarg1, SrtpOpt jarg1_);
+  public final static native void SrtpOpt_keyings_set(long jarg1, SrtpOpt jarg1_, long jarg2, IntVector jarg2_);
+  public final static native long SrtpOpt_keyings_get(long jarg1, SrtpOpt jarg1_);
+  public final static native long new_SrtpOpt();
+  public final static native void SrtpOpt_readObject(long jarg1, SrtpOpt jarg1_, long jarg2, ContainerNode jarg2_) throws java.lang.Exception;
+  public final static native void SrtpOpt_writeObject(long jarg1, SrtpOpt jarg1_, long jarg2, ContainerNode jarg2_) throws java.lang.Exception;
+  public final static native void delete_SrtpOpt(long jarg1);
+  public final static native void RtcpFbCap_codecId_set(long jarg1, RtcpFbCap jarg1_, String jarg2);
+  public final static native String RtcpFbCap_codecId_get(long jarg1, RtcpFbCap jarg1_);
+  public final static native void RtcpFbCap_type_set(long jarg1, RtcpFbCap jarg1_, int jarg2);
+  public final static native int RtcpFbCap_type_get(long jarg1, RtcpFbCap jarg1_);
+  public final static native void RtcpFbCap_typeName_set(long jarg1, RtcpFbCap jarg1_, String jarg2);
+  public final static native String RtcpFbCap_typeName_get(long jarg1, RtcpFbCap jarg1_);
+  public final static native void RtcpFbCap_param_set(long jarg1, RtcpFbCap jarg1_, String jarg2);
+  public final static native String RtcpFbCap_param_get(long jarg1, RtcpFbCap jarg1_);
+  public final static native long new_RtcpFbCap();
+  public final static native void delete_RtcpFbCap(long jarg1);
+  public final static native void RtcpFbConfig_dontUseAvpf_set(long jarg1, RtcpFbConfig jarg1_, boolean jarg2);
+  public final static native boolean RtcpFbConfig_dontUseAvpf_get(long jarg1, RtcpFbConfig jarg1_);
+  public final static native void RtcpFbConfig_caps_set(long jarg1, RtcpFbConfig jarg1_, long jarg2);
+  public final static native long RtcpFbConfig_caps_get(long jarg1, RtcpFbConfig jarg1_);
+  public final static native long new_RtcpFbConfig();
+  public final static native void RtcpFbConfig_readObject(long jarg1, RtcpFbConfig jarg1_, long jarg2, ContainerNode jarg2_) throws java.lang.Exception;
+  public final static native void RtcpFbConfig_writeObject(long jarg1, RtcpFbConfig jarg1_, long jarg2, ContainerNode jarg2_) throws java.lang.Exception;
+  public final static native void delete_RtcpFbConfig(long jarg1);
   public final static native void AccountMediaConfig_transportConfig_set(long jarg1, AccountMediaConfig jarg1_, long jarg2, TransportConfig jarg2_);
   public final static native long AccountMediaConfig_transportConfig_get(long jarg1, AccountMediaConfig jarg1_);
   public final static native void AccountMediaConfig_lockCodecEnabled_set(long jarg1, AccountMediaConfig jarg1_, boolean jarg2);
@@ -1435,8 +1498,14 @@ public class pjsua2JNI {
   public final static native int AccountMediaConfig_srtpUse_get(long jarg1, AccountMediaConfig jarg1_);
   public final static native void AccountMediaConfig_srtpSecureSignaling_set(long jarg1, AccountMediaConfig jarg1_, int jarg2);
   public final static native int AccountMediaConfig_srtpSecureSignaling_get(long jarg1, AccountMediaConfig jarg1_);
+  public final static native void AccountMediaConfig_srtpOpt_set(long jarg1, AccountMediaConfig jarg1_, long jarg2, SrtpOpt jarg2_);
+  public final static native long AccountMediaConfig_srtpOpt_get(long jarg1, AccountMediaConfig jarg1_);
   public final static native void AccountMediaConfig_ipv6Use_set(long jarg1, AccountMediaConfig jarg1_, int jarg2);
   public final static native int AccountMediaConfig_ipv6Use_get(long jarg1, AccountMediaConfig jarg1_);
+  public final static native void AccountMediaConfig_rtcpMuxEnabled_set(long jarg1, AccountMediaConfig jarg1_, boolean jarg2);
+  public final static native boolean AccountMediaConfig_rtcpMuxEnabled_get(long jarg1, AccountMediaConfig jarg1_);
+  public final static native void AccountMediaConfig_rtcpFbConfig_set(long jarg1, AccountMediaConfig jarg1_, long jarg2, RtcpFbConfig jarg2_);
+  public final static native long AccountMediaConfig_rtcpFbConfig_get(long jarg1, AccountMediaConfig jarg1_);
   public final static native void AccountMediaConfig_readObject(long jarg1, AccountMediaConfig jarg1_, long jarg2, ContainerNode jarg2_) throws java.lang.Exception;
   public final static native void AccountMediaConfig_writeObject(long jarg1, AccountMediaConfig jarg1_, long jarg2, ContainerNode jarg2_) throws java.lang.Exception;
   public final static native long new_AccountMediaConfig();
@@ -1469,10 +1538,10 @@ public class pjsua2JNI {
   public final static native boolean AccountIpChangeConfig_hangupCalls_get(long jarg1, AccountIpChangeConfig jarg1_);
   public final static native void AccountIpChangeConfig_reinviteFlags_set(long jarg1, AccountIpChangeConfig jarg1_, long jarg2);
   public final static native long AccountIpChangeConfig_reinviteFlags_get(long jarg1, AccountIpChangeConfig jarg1_);
+  public final static native void delete_AccountIpChangeConfig(long jarg1);
   public final static native void AccountIpChangeConfig_readObject(long jarg1, AccountIpChangeConfig jarg1_, long jarg2, ContainerNode jarg2_) throws java.lang.Exception;
   public final static native void AccountIpChangeConfig_writeObject(long jarg1, AccountIpChangeConfig jarg1_, long jarg2, ContainerNode jarg2_) throws java.lang.Exception;
   public final static native long new_AccountIpChangeConfig();
-  public final static native void delete_AccountIpChangeConfig(long jarg1);
   public final static native void AccountConfig_priority_set(long jarg1, AccountConfig jarg1_, int jarg2);
   public final static native int AccountConfig_priority_get(long jarg1, AccountConfig jarg1_);
   public final static native void AccountConfig_idUri_set(long jarg1, AccountConfig jarg1_, String jarg2);
@@ -1629,6 +1698,7 @@ public class pjsua2JNI {
   public final static native void delete_Account(long jarg1);
   public final static native void Account_create__SWIG_0(long jarg1, Account jarg1_, long jarg2, AccountConfig jarg2_, boolean jarg3) throws java.lang.Exception;
   public final static native void Account_create__SWIG_1(long jarg1, Account jarg1_, long jarg2, AccountConfig jarg2_) throws java.lang.Exception;
+  public final static native void Account_shutdown(long jarg1, Account jarg1_);
   public final static native void Account_modify(long jarg1, Account jarg1_, long jarg2, AccountConfig jarg2_) throws java.lang.Exception;
   public final static native boolean Account_isValid(long jarg1, Account jarg1_);
   public final static native void Account_setDefault(long jarg1, Account jarg1_) throws java.lang.Exception;
@@ -1643,8 +1713,6 @@ public class pjsua2JNI {
   public final static native long Account_enumBuddies(long jarg1, Account jarg1_) throws java.lang.Exception;
   public final static native long Account_findBuddy__SWIG_0(long jarg1, Account jarg1_, String jarg2, long jarg3, FindBuddyMatch jarg3_) throws java.lang.Exception;
   public final static native long Account_findBuddy__SWIG_1(long jarg1, Account jarg1_, String jarg2) throws java.lang.Exception;
-  public final static native void Account_addBuddy(long jarg1, Account jarg1_, long jarg2, Buddy jarg2_);
-  public final static native void Account_removeBuddy(long jarg1, Account jarg1_, long jarg2, Buddy jarg2_);
   public final static native void Account_onIncomingCall(long jarg1, Account jarg1_, long jarg2, OnIncomingCallParam jarg2_);
   public final static native void Account_onIncomingCallSwigExplicitAccount(long jarg1, Account jarg1_, long jarg2, OnIncomingCallParam jarg2_);
   public final static native void Account_onRegStarted(long jarg1, Account jarg1_, long jarg2, OnRegStartedParam jarg2_);
@@ -1797,6 +1865,10 @@ public class pjsua2JNI {
   public final static native long MediaEvent_pjMediaEvent_get(long jarg1, MediaEvent jarg1_);
   public final static native long new_MediaEvent();
   public final static native void delete_MediaEvent(long jarg1);
+  public final static native void MediaTransportInfo_localRtpName_set(long jarg1, MediaTransportInfo jarg1_, String jarg2);
+  public final static native String MediaTransportInfo_localRtpName_get(long jarg1, MediaTransportInfo jarg1_);
+  public final static native void MediaTransportInfo_localRtcpName_set(long jarg1, MediaTransportInfo jarg1_, String jarg2);
+  public final static native String MediaTransportInfo_localRtcpName_get(long jarg1, MediaTransportInfo jarg1_);
   public final static native void MediaTransportInfo_srcRtpName_set(long jarg1, MediaTransportInfo jarg1_, String jarg2);
   public final static native String MediaTransportInfo_srcRtpName_get(long jarg1, MediaTransportInfo jarg1_);
   public final static native void MediaTransportInfo_srcRtcpName_set(long jarg1, MediaTransportInfo jarg1_, String jarg2);
@@ -1937,8 +2009,12 @@ public class pjsua2JNI {
   public final static native long OnStreamDestroyedParam_streamIdx_get(long jarg1, OnStreamDestroyedParam jarg1_);
   public final static native long new_OnStreamDestroyedParam();
   public final static native void delete_OnStreamDestroyedParam(long jarg1);
+  public final static native void OnDtmfDigitParam_method_set(long jarg1, OnDtmfDigitParam jarg1_, int jarg2);
+  public final static native int OnDtmfDigitParam_method_get(long jarg1, OnDtmfDigitParam jarg1_);
   public final static native void OnDtmfDigitParam_digit_set(long jarg1, OnDtmfDigitParam jarg1_, String jarg2);
   public final static native String OnDtmfDigitParam_digit_get(long jarg1, OnDtmfDigitParam jarg1_);
+  public final static native void OnDtmfDigitParam_duration_set(long jarg1, OnDtmfDigitParam jarg1_, long jarg2);
+  public final static native long OnDtmfDigitParam_duration_get(long jarg1, OnDtmfDigitParam jarg1_);
   public final static native long new_OnDtmfDigitParam();
   public final static native void delete_OnDtmfDigitParam(long jarg1);
   public final static native void OnCallTransferRequestParam_dstUri_set(long jarg1, OnCallTransferRequestParam jarg1_, String jarg2);
@@ -1981,6 +2057,18 @@ public class pjsua2JNI {
   public final static native long OnCallRxOfferParam_opt_get(long jarg1, OnCallRxOfferParam jarg1_);
   public final static native long new_OnCallRxOfferParam();
   public final static native void delete_OnCallRxOfferParam(long jarg1);
+  public final static native void OnCallRxReinviteParam_offer_set(long jarg1, OnCallRxReinviteParam jarg1_, long jarg2, SdpSession jarg2_);
+  public final static native long OnCallRxReinviteParam_offer_get(long jarg1, OnCallRxReinviteParam jarg1_);
+  public final static native void OnCallRxReinviteParam_rdata_set(long jarg1, OnCallRxReinviteParam jarg1_, long jarg2, SipRxData jarg2_);
+  public final static native long OnCallRxReinviteParam_rdata_get(long jarg1, OnCallRxReinviteParam jarg1_);
+  public final static native void OnCallRxReinviteParam_async_set(long jarg1, OnCallRxReinviteParam jarg1_, boolean jarg2);
+  public final static native boolean OnCallRxReinviteParam_async_get(long jarg1, OnCallRxReinviteParam jarg1_);
+  public final static native void OnCallRxReinviteParam_statusCode_set(long jarg1, OnCallRxReinviteParam jarg1_, int jarg2);
+  public final static native int OnCallRxReinviteParam_statusCode_get(long jarg1, OnCallRxReinviteParam jarg1_);
+  public final static native void OnCallRxReinviteParam_opt_set(long jarg1, OnCallRxReinviteParam jarg1_, long jarg2, CallSetting jarg2_);
+  public final static native long OnCallRxReinviteParam_opt_get(long jarg1, OnCallRxReinviteParam jarg1_);
+  public final static native long new_OnCallRxReinviteParam();
+  public final static native void delete_OnCallRxReinviteParam(long jarg1);
   public final static native void OnCallTxOfferParam_opt_set(long jarg1, OnCallTxOfferParam jarg1_, long jarg2, CallSetting jarg2_);
   public final static native long OnCallTxOfferParam_opt_get(long jarg1, OnCallTxOfferParam jarg1_);
   public final static native long new_OnCallTxOfferParam();
@@ -2015,14 +2103,6 @@ public class pjsua2JNI {
   public final static native long OnCreateMediaTransportParam_flags_get(long jarg1, OnCreateMediaTransportParam jarg1_);
   public final static native long new_OnCreateMediaTransportParam();
   public final static native void delete_OnCreateMediaTransportParam(long jarg1);
-  public final static native void SrtpCrypto_key_set(long jarg1, SrtpCrypto jarg1_, String jarg2);
-  public final static native String SrtpCrypto_key_get(long jarg1, SrtpCrypto jarg1_);
-  public final static native void SrtpCrypto_name_set(long jarg1, SrtpCrypto jarg1_, String jarg2);
-  public final static native String SrtpCrypto_name_get(long jarg1, SrtpCrypto jarg1_);
-  public final static native void SrtpCrypto_flags_set(long jarg1, SrtpCrypto jarg1_, long jarg2);
-  public final static native long SrtpCrypto_flags_get(long jarg1, SrtpCrypto jarg1_);
-  public final static native long new_SrtpCrypto();
-  public final static native void delete_SrtpCrypto(long jarg1);
   public final static native void OnCreateMediaTransportSrtpParam_mediaIdx_set(long jarg1, OnCreateMediaTransportSrtpParam jarg1_, long jarg2);
   public final static native long OnCreateMediaTransportSrtpParam_mediaIdx_get(long jarg1, OnCreateMediaTransportSrtpParam jarg1_);
   public final static native void OnCreateMediaTransportSrtpParam_srtpUse_set(long jarg1, OnCreateMediaTransportSrtpParam jarg1_, int jarg2);
@@ -2041,6 +2121,8 @@ public class pjsua2JNI {
   public final static native long CallOpParam_options_get(long jarg1, CallOpParam jarg1_);
   public final static native void CallOpParam_txOption_set(long jarg1, CallOpParam jarg1_, long jarg2, SipTxOption jarg2_);
   public final static native long CallOpParam_txOption_get(long jarg1, CallOpParam jarg1_);
+  public final static native void CallOpParam_sdp_set(long jarg1, CallOpParam jarg1_, long jarg2, SdpSession jarg2_);
+  public final static native long CallOpParam_sdp_get(long jarg1, CallOpParam jarg1_);
   public final static native long new_CallOpParam__SWIG_0(boolean jarg1);
   public final static native long new_CallOpParam__SWIG_1();
   public final static native void delete_CallOpParam(long jarg1);
@@ -2058,6 +2140,14 @@ public class pjsua2JNI {
   public final static native int CallVidSetStreamParam_capDev_get(long jarg1, CallVidSetStreamParam jarg1_);
   public final static native long new_CallVidSetStreamParam();
   public final static native void delete_CallVidSetStreamParam(long jarg1);
+  public final static native void CallSendDtmfParam_method_set(long jarg1, CallSendDtmfParam jarg1_, int jarg2);
+  public final static native int CallSendDtmfParam_method_get(long jarg1, CallSendDtmfParam jarg1_);
+  public final static native void CallSendDtmfParam_duration_set(long jarg1, CallSendDtmfParam jarg1_, long jarg2);
+  public final static native long CallSendDtmfParam_duration_get(long jarg1, CallSendDtmfParam jarg1_);
+  public final static native void CallSendDtmfParam_digits_set(long jarg1, CallSendDtmfParam jarg1_, String jarg2);
+  public final static native String CallSendDtmfParam_digits_get(long jarg1, CallSendDtmfParam jarg1_);
+  public final static native long new_CallSendDtmfParam();
+  public final static native void delete_CallSendDtmfParam(long jarg1);
   public final static native long new_Call__SWIG_0(long jarg1, Account jarg1_, int jarg2);
   public final static native long new_Call__SWIG_1(long jarg1, Account jarg1_);
   public final static native void delete_Call(long jarg1);
@@ -2081,6 +2171,7 @@ public class pjsua2JNI {
   public final static native void Call_xferReplaces(long jarg1, Call jarg1_, long jarg2, Call jarg2_, long jarg3, CallOpParam jarg3_) throws java.lang.Exception;
   public final static native void Call_processRedirect(long jarg1, Call jarg1_, int jarg2) throws java.lang.Exception;
   public final static native void Call_dialDtmf(long jarg1, Call jarg1_, String jarg2) throws java.lang.Exception;
+  public final static native void Call_sendDtmf(long jarg1, Call jarg1_, long jarg2, CallSendDtmfParam jarg2_) throws java.lang.Exception;
   public final static native void Call_sendInstantMessage(long jarg1, Call jarg1_, long jarg2, SendInstantMessageParam jarg2_) throws java.lang.Exception;
   public final static native void Call_sendTypingIndication(long jarg1, Call jarg1_, long jarg2, SendTypingIndicationParam jarg2_) throws java.lang.Exception;
   public final static native void Call_sendRequest(long jarg1, Call jarg1_, long jarg2, CallSendRequestParam jarg2_) throws java.lang.Exception;
@@ -2117,6 +2208,8 @@ public class pjsua2JNI {
   public final static native void Call_onCallReplacedSwigExplicitCall(long jarg1, Call jarg1_, long jarg2, OnCallReplacedParam jarg2_);
   public final static native void Call_onCallRxOffer(long jarg1, Call jarg1_, long jarg2, OnCallRxOfferParam jarg2_);
   public final static native void Call_onCallRxOfferSwigExplicitCall(long jarg1, Call jarg1_, long jarg2, OnCallRxOfferParam jarg2_);
+  public final static native void Call_onCallRxReinvite(long jarg1, Call jarg1_, long jarg2, OnCallRxReinviteParam jarg2_);
+  public final static native void Call_onCallRxReinviteSwigExplicitCall(long jarg1, Call jarg1_, long jarg2, OnCallRxReinviteParam jarg2_);
   public final static native void Call_onCallTxOffer(long jarg1, Call jarg1_, long jarg2, OnCallTxOfferParam jarg2_);
   public final static native void Call_onCallTxOfferSwigExplicitCall(long jarg1, Call jarg1_, long jarg2, OnCallTxOfferParam jarg2_);
   public final static native void Call_onInstantMessage(long jarg1, Call jarg1_, long jarg2, OnInstantMessageParam jarg2_);
@@ -2287,6 +2380,8 @@ public class pjsua2JNI {
   public final static native boolean UaConfig_mainThreadOnly_get(long jarg1, UaConfig jarg1_);
   public final static native void UaConfig_nameserver_set(long jarg1, UaConfig jarg1_, long jarg2, StringVector jarg2_);
   public final static native long UaConfig_nameserver_get(long jarg1, UaConfig jarg1_);
+  public final static native void UaConfig_outboundProxies_set(long jarg1, UaConfig jarg1_, long jarg2, StringVector jarg2_);
+  public final static native long UaConfig_outboundProxies_get(long jarg1, UaConfig jarg1_);
   public final static native void UaConfig_userAgent_set(long jarg1, UaConfig jarg1_, String jarg2);
   public final static native String UaConfig_userAgent_get(long jarg1, UaConfig jarg1_);
   public final static native void UaConfig_stunServer_set(long jarg1, UaConfig jarg1_, long jarg2, StringVector jarg2_);
@@ -2451,6 +2546,7 @@ public class pjsua2JNI {
   public final static native long Endpoint_getVideoCodecParam(long jarg1, Endpoint jarg1_, String jarg2) throws java.lang.Exception;
   public final static native void Endpoint_setVideoCodecParam(long jarg1, Endpoint jarg1_, String jarg2, long jarg3, VidCodecParam jarg3_) throws java.lang.Exception;
   public final static native void Endpoint_resetVideoCodecParam(long jarg1, Endpoint jarg1_, String jarg2) throws java.lang.Exception;
+  public final static native long Endpoint_srtpCryptoEnum(long jarg1, Endpoint jarg1_) throws java.lang.Exception;
   public final static native void Endpoint_handleIpChange(long jarg1, Endpoint jarg1_, long jarg2, IpChangeParam jarg2_) throws java.lang.Exception;
   public final static native void Endpoint_onNatDetectionComplete(long jarg1, Endpoint jarg1_, long jarg2, OnNatDetectionCompleteParam jarg2_);
   public final static native void Endpoint_onNatDetectionCompleteSwigExplicitEndpoint(long jarg1, Endpoint jarg1_, long jarg2, OnNatDetectionCompleteParam jarg2_);
@@ -2477,6 +2573,7 @@ public class pjsua2JNI {
   public final static native long ToneDesc_SWIGUpcast(long jarg1);
   public final static native long ToneDigit_SWIGUpcast(long jarg1);
   public final static native long ToneGenerator_SWIGUpcast(long jarg1);
+  public final static native long ExtraAudioDevice_SWIGUpcast(long jarg1);
   public final static native long BuddyConfig_SWIGUpcast(long jarg1);
   public final static native long AccountRegConfig_SWIGUpcast(long jarg1);
   public final static native long AccountSipConfig_SWIGUpcast(long jarg1);
@@ -2484,6 +2581,8 @@ public class pjsua2JNI {
   public final static native long AccountPresConfig_SWIGUpcast(long jarg1);
   public final static native long AccountMwiConfig_SWIGUpcast(long jarg1);
   public final static native long AccountNatConfig_SWIGUpcast(long jarg1);
+  public final static native long SrtpOpt_SWIGUpcast(long jarg1);
+  public final static native long RtcpFbConfig_SWIGUpcast(long jarg1);
   public final static native long AccountMediaConfig_SWIGUpcast(long jarg1);
   public final static native long AccountVideoConfig_SWIGUpcast(long jarg1);
   public final static native long AccountConfig_SWIGUpcast(long jarg1);
@@ -2564,6 +2663,9 @@ public class pjsua2JNI {
   }
   public static void SwigDirector_Call_onCallRxOffer(Call self, long prm) {
     self.onCallRxOffer(new OnCallRxOfferParam(prm, false));
+  }
+  public static void SwigDirector_Call_onCallRxReinvite(Call self, long prm) {
+    self.onCallRxReinvite(new OnCallRxReinviteParam(prm, false));
   }
   public static void SwigDirector_Call_onCallTxOffer(Call self, long prm) {
     self.onCallTxOffer(new OnCallTxOfferParam(prm, false));

@@ -270,6 +270,10 @@ public class Endpoint {
     pjsua2JNI.Endpoint_resetVideoCodecParam(swigCPtr, this, codec_id);
   }
 
+  public StringVector srtpCryptoEnum() throws java.lang.Exception {
+    return new StringVector(pjsua2JNI.Endpoint_srtpCryptoEnum(swigCPtr, this), true);
+  }
+
   public void handleIpChange(IpChangeParam param) throws java.lang.Exception {
     pjsua2JNI.Endpoint_handleIpChange(swigCPtr, this, IpChangeParam.getCPtr(param), param);
   }

@@ -61,18 +61,20 @@ class MyCall extends Call
     @Override
     public void onCallState(OnCallStateParam prm)
     {
-	    MyApp.observer.notifyCallState(this);
-	    try {
-		CallInfo ci = getInfo();
-		if (ci.getState() == 
-		    pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED)
-		{
-		    MyApp.ep.utilLogWrite(3, "MyCall", this.dump(true, ""));
-		    this.delete();
-		}
-	    } catch (Exception e) {
-		return;
+	try {
+	    CallInfo ci = getInfo();
+	    if (ci.getState() == 
+		pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED)
+	    {
+		MyApp.ep.utilLogWrite(3, "MyCall", this.dump(true, ""));
 	    }
+	} catch (Exception e) {
+	}
+	
+	// Should not delete this call instance (self) in this context,
+	// so the observer should manage this call instance deletion
+	// out of this callback context.
+	MyApp.observer.notifyCallState(this);
     }
 
     @Override
@@ -310,7 +312,7 @@ class MyApp {
     private MyLogWriter logWriter;
 
     private final String configName = "pjsua2.json";
-    private final int SIP_PORT  = 5060;
+    private final int SIP_PORT  = 6000;
     private final int LOG_LEVEL = 4;
 
     public void init(MyAppObserver obs, String app_dir)

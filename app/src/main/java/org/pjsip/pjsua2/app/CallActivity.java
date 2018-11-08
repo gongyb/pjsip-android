@@ -103,12 +103,6 @@ public class CallActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
 	super.onCreate(savedInstanceState);
-
-		//add 0629
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-				| WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-				| WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-
 	setContentView(R.layout.activity_call);
 
 	SurfaceView surfaceInVideo = (SurfaceView)
@@ -257,7 +251,7 @@ public class CallActivity extends Activity
 	    }
 	}
     }
-
+    
     public void setupVideoPreview(SurfaceView surfacePreview, 
 	    			  Button buttonShowPreview)
     {
@@ -334,14 +328,15 @@ public class CallActivity extends Activity
 	Button buttonAccept = (Button) findViewById(R.id.buttonAccept);
 	String call_state = "";
 
-	if (ci.getRole() == pjsip_role_e.PJSIP_ROLE_UAC) {
+        if (ci == null) {
 	    buttonAccept.setVisibility(View.GONE);
+	    buttonHangup.setText("OK");
+	    tvState.setText("Call disconnected");
+	    return;
 	}
 
-	// if add 0629
-	if(ci.getState() == pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED){
-		finish();
-		return;
+	if (ci.getRole() == pjsip_role_e.PJSIP_ROLE_UAC) {
+	    buttonAccept.setVisibility(View.GONE);
 	}
 
 	if (ci.getState().swigValue() <

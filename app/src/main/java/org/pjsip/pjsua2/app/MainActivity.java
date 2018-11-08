@@ -29,7 +29,6 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -235,11 +234,21 @@ public class MainActivity extends Activity
 
 	    CallInfo ci = (CallInfo) m.obj;
 
-	    /* Forward the message to CallActivity */
+	    if (currentCall == null || ci == null || ci.getId() != currentCall.getId()) {
+		System.out.println("Call state event received, but call info is invalid");
+		return true;
+	    }
+
+	    /* Forward the call info to CallActivity */
 	    if (CallActivity.handler_ != null) {
-		Message m2 = Message.obtain(CallActivity.handler_,
-		    MSG_TYPE.CALL_STATE, ci);
+		Message m2 = Message.obtain(CallActivity.handler_, MSG_TYPE.CALL_STATE, ci);
 		m2.sendToTarget();
+	    }
+
+	    if (ci.getState() == pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED)
+	    {
+		currentCall.delete();
+		currentCall = null;
 	    }
 
 	} else if (m.what == MSG_TYPE.CALL_MEDIA_STATE) {
@@ -358,14 +367,6 @@ public class MainActivity extends Activity
 	    etPass. setText("");
 	}
 
-        Log.i("etId", "etId="+accCfg.getIdUri());
-        if (accCfg.getIdUri().equals("sip:localhost")){
-            etId.setText("sip:6101@192.168.1.118");
-            etReg.setText("sip:192.168.1.118");
-            etUser.setText("6101");
-            etPass.setText("6101");
-        }
-
 	adb.setCancelable(false);
 	adb.setPositiveButton("OK",
 	    new DialogInterface.OnClickListener()
@@ -464,7 +465,6 @@ public class MainActivity extends Activity
 
 	if (is_add) {
 	    adb.setTitle("Add Buddy");
-        etUri.setText("sip:6002@192.168.1.118");
 	} else {
 	    adb.setTitle("Edit Buddy");
 	    etUri. setText(initial.getUri());
@@ -531,16 +531,6 @@ public class MainActivity extends Activity
 
 	BuddyConfig old_cfg = account.buddyList.get(buddyListSelectedIdx).cfg;
 	dlgAddEditBuddy(old_cfg);
-    }
-
-    private void sendBuddyInstantMessage(){
-        SendInstantMessageParam msg = new SendInstantMessageParam();
-        msg.setContent("xxxxxxxxxxxxxxxxxxxxx");
-        try {
-            account.buddyList.get(0).sendInstantMessage(msg);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void delBuddy(View view) {
@@ -615,20 +605,16 @@ public class MainActivity extends Activity
 	if (currentCall == null || call.getId() != currentCall.getId())
 	    return;
 
-	CallInfo ci;
+	CallInfo ci = null;
 	try {
 	    ci = call.getInfo();
-	} catch (Exception e) {
-	    ci = null;
-	}
+	} catch (Exception e) {}
+        
+	if (ci != null)
+	    return;
+
 	Message m = Message.obtain(handler, MSG_TYPE.CALL_STATE, ci);
 	m.sendToTarget();
-
-	if (ci != null &&
-	    ci.getState() == pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED)
-	{
-	    currentCall = null;
-	}
     }
 
     public void notifyCallMediaState(MyCall call)
