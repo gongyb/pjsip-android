@@ -80,4 +80,8 @@ public class AudioMedia extends Media {
     return (cPtr == 0) ? null : new AudioMedia(cPtr, false);
   }
 
+  public AudioMedia() {
+    this(pjsua2JNI.new_AudioMedia(), true);
+  }
+
 }

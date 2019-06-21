@@ -86,6 +86,18 @@ public class Call {
     return (cPtr == 0) ? null : new Media(cPtr, false);
   }
 
+  public AudioMedia getAudioMedia(int med_idx) throws java.lang.Exception {
+    return new AudioMedia(pjsua2JNI.Call_getAudioMedia(swigCPtr, this, med_idx), true);
+  }
+
+  public VideoMedia getEncodingVideoMedia(int med_idx) throws java.lang.Exception {
+    return new VideoMedia(pjsua2JNI.Call_getEncodingVideoMedia(swigCPtr, this, med_idx), true);
+  }
+
+  public VideoMedia getDecodingVideoMedia(int med_idx) throws java.lang.Exception {
+    return new VideoMedia(pjsua2JNI.Call_getDecodingVideoMedia(swigCPtr, this, med_idx), true);
+  }
+
   public pjsip_dialog_cap_status remoteHasCap(int htype, String hname, String token) {
     return pjsip_dialog_cap_status.swigToEnum(pjsua2JNI.Call_remoteHasCap(swigCPtr, this, htype, hname, token));
   }

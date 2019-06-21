@@ -116,6 +116,10 @@ public class Account {
     return new BuddyVector(pjsua2JNI.Account_enumBuddies(swigCPtr, this), false);
   }
 
+  public BuddyVector2 enumBuddies2() throws java.lang.Exception {
+    return new BuddyVector2(pjsua2JNI.Account_enumBuddies2(swigCPtr, this), true);
+  }
+
   public Buddy findBuddy(String uri, FindBuddyMatch buddy_match) throws java.lang.Exception {
     long cPtr = pjsua2JNI.Account_findBuddy__SWIG_0(swigCPtr, this, uri, FindBuddyMatch.getCPtr(buddy_match), buddy_match);
     return (cPtr == 0) ? null : new Buddy(cPtr, false);
@@ -124,6 +128,10 @@ public class Account {
   public Buddy findBuddy(String uri) throws java.lang.Exception {
     long cPtr = pjsua2JNI.Account_findBuddy__SWIG_1(swigCPtr, this, uri);
     return (cPtr == 0) ? null : new Buddy(cPtr, false);
+  }
+
+  public Buddy findBuddy2(String uri) throws java.lang.Exception {
+    return new Buddy(pjsua2JNI.Account_findBuddy2(swigCPtr, this, uri), true);
   }
 
   public void onIncomingCall(OnIncomingCallParam prm) {
