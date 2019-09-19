@@ -310,8 +310,8 @@ class MyApp {
     private MyLogWriter logWriter;
 
     private final String configName = "pjsua2.json";
-    private final int SIP_PORT  = 6000;
-    private final int LOG_LEVEL = 4;
+    private final int SIP_PORT  = 5060;
+    private final int LOG_LEVEL = 4;	// 0-6,
 
     public void init(MyAppObserver obs, String app_dir)
     {

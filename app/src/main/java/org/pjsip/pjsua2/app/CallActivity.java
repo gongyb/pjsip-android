@@ -18,6 +18,7 @@
  */
 package org.pjsip.pjsua2.app;
 
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -357,6 +358,10 @@ public class CallActivity extends Activity
 	    call_state = ci.getStateText();
 	    if (ci.getState() == pjsip_inv_state.PJSIP_INV_STATE_CONFIRMED) {
 		buttonHangup.setText("Hangup");
+
+			AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+			if (audioManager != null) audioManager.setSpeakerphoneOn(true);
+
 	    } else if (ci.getState() ==
 		       pjsip_inv_state.PJSIP_INV_STATE_DISCONNECTED)
 	    {
