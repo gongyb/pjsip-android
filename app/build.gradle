@@ -1,17 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
 
     defaultConfig {
         applicationId "org.pjsip.pjsua2.app"
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 29
 
         ndk {
             moduleName "libpjsua2"
+            // abiFilters 'armeabi'//, 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+            // gradle 3.5.0 compile apk default need 'arm64-v8a', run crash.
+            abiFilters 'armeabi-v7a'
         }
+
     }
 
     buildTypes {
