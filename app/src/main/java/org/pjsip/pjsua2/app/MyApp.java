@@ -121,6 +121,14 @@ class MyCall extends Call
 
 	MyApp.observer.notifyCallMediaState(this);
     }
+
+    @Override
+    public void onDtmfDigit(OnDtmfDigitParam prm) {
+        super.onDtmfDigit(prm);
+        System.out.println("onDtmfDigit getDigit=" + prm.getDigit());
+        System.out.println("onDtmfDigit getDuration=" + prm.getDuration());
+        System.out.println("onDtmfDigit getMethod=" + prm.getMethod().toString());
+    }
 }
 
 

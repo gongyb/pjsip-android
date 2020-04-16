@@ -145,7 +145,28 @@ public class MainActivity extends Activity
 
 	if (app.accList.size() == 0) {
 	    accCfg = new AccountConfig();
-	    accCfg.setIdUri("sip:localhost");
+
+	    if (true) {
+	    	// init local sip account.
+			accCfg.setIdUri("sip:localhost");
+		} else {
+	    	// Configure your sip server here.
+	    	String serIp = "";
+			String username = "";
+			String password = "";
+
+			String acc_id = "sip:" + username + "@" + serIp;
+			String registrar = "sip:" + serIp;
+			accCfg.setIdUri(acc_id);
+			accCfg.getRegConfig().setRegistrarUri(registrar);
+			AuthCredInfoVector creds = accCfg.getSipConfig().getAuthCreds();
+			creds.clear();
+			if (username.length() != 0) {
+				creds.add(new AuthCredInfo("Digest", "*", username, 0,
+						password));
+			}
+		}
+
 	    accCfg.getNatConfig().setIceEnabled(true);
 	    accCfg.getVideoConfig().setAutoTransmitOutgoing(true);
 	    accCfg.getVideoConfig().setAutoShowIncoming(true);
